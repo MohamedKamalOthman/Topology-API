@@ -2,57 +2,77 @@ package topologyapi;
 
 import org.json.simple.JSONObject;
 
-//an abstract class used for referencing children
-public abstract class Component {
+public interface Component {
 
-    //shared components attributes
-    protected String id;
-    protected Number defaultVal;
-    protected Number minVal;
-    protected Number maxVal;
+    /**
+     * export the topology itself to a JSON object(return value)
+     *
+     * @return topology as JSON object
+     */
+    JSONObject writeComponent();
 
-    //the following are abstract because I want to ensure they get overridden in all children classes
+    /**
+     * receives a JSON object
+     *
+     * @param obj
+     * @return the corresponding right component
+     */
+    Device readComponent(JSONObject obj);
 
-    //export the topology itself to a JSON object(return value)
-    public abstract JSONObject writeComponent();
+    /**
+     * @param id
+     * @return true if the given id exist in the component netlist
+     */
+    boolean netlistExist(String id);
 
-    //receive a JSON object and return the corresponding right component
-    public abstract Component readComponent(JSONObject obj);
+    //setters and getters the most common
 
-    //return true if the given id exist in the component netlist
-    public abstract boolean netlistExist(String id);
+    /**
+     * @return id value
+     */
+    String getId();
 
-    //setters and getters
-    public String getId() {
-        return id;
-    }
+    /**
+     * sets id value
+     *
+     * @param id
+     */
+    void setId(String id);
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    /**
+     * @return defaultVal
+     */
+    Number getDefaultVal();
 
-    public Number getDefaultVal() {
-        return defaultVal;
-    }
+    /**
+     * sets defaultVal
+     *
+     * @param defaultVal
+     */
+    void setDefaultVal(Number defaultVal);
 
-    public void setDefaultVal(Number defaultVal) {
-        this.defaultVal = defaultVal;
-    }
+    /**
+     * @return minVal
+     */
+    Number getMinVal();
 
-    public Number getMinVal() {
-        return minVal;
-    }
+    /**
+     * sets minVal
+     *
+     * @param minVal
+     */
+    void setMinVal(Number minVal);
 
-    public void setMinVal(Number minVal) {
-        this.minVal = minVal;
-    }
+    /**
+     * @return maxVal
+     */
+    Number getMaxVal();
 
-    public Number getMaxVal() {
-        return maxVal;
-    }
-
-    public void setMaxVal(Number maxVal) {
-        this.maxVal = maxVal;
-    }
+    /**
+     * sets maxVal
+     *
+     * @param maxVal
+     */
+    void setMaxVal(Number maxVal);
 
 }

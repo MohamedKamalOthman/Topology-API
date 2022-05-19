@@ -42,7 +42,7 @@
       }
     },
     {
-      "type": "nmos",
+      "type": "pmos",
       "id": "m2",
       "m(l)": {
         "default": 1.75,
